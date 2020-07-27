@@ -59,9 +59,18 @@ public class UsuarioService implements IUsuarioService, UserDetailsService {
     @Override
     public Usuario saveUser(Usuario usuario) {
         usuario.setPassword(bCryptPasswordEncoder.encode(usuario.getPassword()));
-        Authority userRole = authorityRepository.findByAuthority("USER");
-        usuario.setAuthority(new HashSet<Authority>(Arrays.asList(userRole)));
+        System.out.println(usuario.toString());
+        if(usuario.getAuthority() == null){
+            System.out.println("hey!");
+            Authority userRole = authorityRepository.findByAuthority("USER");
+            usuario.setAuthority(new HashSet<Authority>(Arrays.asList(userRole)));
+        }
         return repository.save(usuario);
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        repository.deleteById(id);
     }
 
     @Override

@@ -11,4 +11,5 @@ public interface IUsuarioService {
     Usuario getUsuario(int id);
     String adminUsuario(Usuario u);
     Usuario saveUser(Usuario usuario);
+    void deleteUser(int id);
 }

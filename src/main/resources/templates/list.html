@@ -13,10 +13,6 @@
 
     <div class="container-flux">
 
-        <div th:if="${options != null}">
-            <label>Hey!</label>
-        </div>
-
         <h2 class="text-center">
             Lista de Usuarios!
         </h2>
@@ -51,12 +47,12 @@
                 <td th:text="*{usu.telefono}"></td>
                 <td th:text="*{usu.fechaNacimiento}"></td>
                 <td th:text="*{usu.email}"></td>
-                <td th:text="*{usu.tipoEmpleado.nombre}"></td>
-                <td th:text="*{usu.departamento.nombre}"></td>
-                <td th:text="*{usu.estadoCivil.nombre}"></td>
+                <td th:if="*{usu.tipoEmpleado != null}" th:text="*{usu.tipoEmpleado.nombre}"></td>
+                <td th:if="*{usu.departamento != null}" th:text="*{usu.departamento.nombre}"></td>
+                <td th:if="*{usu.estadoCivil != null} " th:text="*{usu.estadoCivil.nombre}"></td>
                 <td th:if="${options != null}">
-                    <button>test1</button>
-                    <button>test2</button>
+                    <a class="btn btn-info" th:href="@{/save/{id}(id=${usu.id})}"><i class="fa fa-pencil-square" aria-hidden="true"></i></a>
+                    <a class="btn btn-danger" th:href="@{/delete/{id}(id=${usu.id})}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                 </td>
             </tr>
             </tbody>

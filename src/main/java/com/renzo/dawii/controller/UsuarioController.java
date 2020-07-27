@@ -74,10 +74,16 @@ public class UsuarioController {
 
     @PostMapping("/save")
     public String save(Usuario user, Model model) {
-        System.out.println(user.toString());
 
         usuarioService.saveUser(user);
 
+        return "redirect:/list";
+    }
+
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Integer id, Model model) {
+
+        usuarioService.deleteUser(id);
         return "redirect:/list";
     }
 
