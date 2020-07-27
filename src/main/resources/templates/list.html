@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+<body>
+
+    <div class="container-flux">
+
+        <div th:if="${options != null}">
+            <label>Hey!</label>
+        </div>
+
+        <h2 class="text-center">
+            Lista de Usuarios!
+        </h2>
+
+        <h2 th:if="${list.isEmpty()}">No hay personas</h2>
+
+        <a href="/save/0" class="btn btn-primary">Agregar</a>
+
+        <table class="table" th:if="${!list.isEmpty()}">
+            <thead class="thead-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Apellidos</th>
+                <th scope="col">Direccion</th>
+                <th scope="col">Telefono</th>
+                <th scope="col">FechaNac</th>
+                <th scope="col">Email</th>
+                <th scope="col">Tipo Empleado</th>
+                <th scope="col">Departamento</th>
+                <th scope="col">Estado Civil</th>
+
+                <th scope="col" th:if="${options != null}">Opciones</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th th:each="usu : ${list}">
+                <th scope="row" th:text="*{usu.id}"></th>
+                <td th:text="*{usu.nombre}"></td>
+                <td th:text="*{usu.apellidoPaterno + ' ' + usu.apellidoMaterno}"></td>
+                <td th:text="*{usu.direccion}"></td>
+                <td th:text="*{usu.telefono}"></td>
+                <td th:text="*{usu.fechaNacimiento}"></td>
+                <td th:text="*{usu.email}"></td>
+                <td th:text="*{usu.tipoEmpleado.nombre}"></td>
+                <td th:text="*{usu.departamento.nombre}"></td>
+                <td th:text="*{usu.estadoCivil.nombre}"></td>
+                <td th:if="${options != null}">
+                    <button>test1</button>
+                    <button>test2</button>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+</body>
+</html>

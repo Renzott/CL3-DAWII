@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://bootswatch.com/4/lux/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/solid.css">
+    <script src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+</head>
+
+<div class="container">
+    <br>
+    <h2>Agregar Persona</h2>
+    <br>
+    <form action="#" th:action="@{/save}" class="form-group"
+          th:object="${usuario}" method="post">
+
+        <input type="hidden" th:field="*{id}" id="id" name="id">
+
+        <div class="form-group">
+            <label for="nombre">Nombre</label> <input type="text"
+                                                      class="form-control" id="nombre" th:field="*{nombre}"
+                                                      name="nombre">
+        </div>
+
+        <div class="form-group">
+            <label for="password">password</label> <input type="password"
+                                                      class="form-control" id="password" th:field="*{password}"
+                                                      name="password">
+        </div>
+
+        <div class="form-group">
+            <label for="apellidoPaterno">apellidoPaterno</label> <input type="text"
+                                                      class="form-control" id="apellidoPaterno" th:field="*{apellidoPaterno}"
+                                                      name="apellidoPaterno">
+        </div>
+
+        <div class="form-group">
+            <label for="apellidoMaterno">apellidoMaterno</label> <input type="text"
+                                                               class="form-control" id="apellidoMaterno" th:field="*{apellidoMaterno}"
+                                                               name="apellidoMaterno">
+        </div>
+
+        <div class="form-group">
+            <label for="telefono">telefono</label> <input type="text"
+                                                               class="form-control" id="telefono" th:field="*{telefono}"
+                                                               name="telefono">
+        </div>
+
+        <div class="form-group">
+            <label for="fechaNacimiento">fechaNacimiento</label> <input type="date"
+                                                            class="form-control" id="fechaNacimiento" th:field="*{fechaNacimiento}"
+                                                            value="2010-08-01"
+                                                            name="fechaNacimiento">
+        </div>
+
+        <div class="form-group">
+            <label for="email">email</label> <input type="text"
+                                                    class="form-control" id="email" th:field="*{email}"
+                                                    name="email">
+        </div>
+
+        <div class="form-group">
+            <label for="tipoEmpleado">Tipo Empleado</label>
+            <select class="form-control" id="tipoEmpleado" name="tipoEmpleado"
+                    th:field="*{tipoEmpleado.id}">
+                <option value="0">Seleccione...</option>
+                <option th:each="tip:${listTipoEmp}" th:text="${tip.nombre}" th:value="${tip.id}"/>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="departamento">Tipo Empleado</label>
+            <select class="form-control" id="departamento" name="departamento"
+                    th:field="*{departamento.id}">
+                <option value="0">Seleccione...</option>
+                <option th:each="dep:${listDepart}" th:text="${dep.nombre}" th:value="${dep.id}"/>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="estadoCivil">Tipo Empleado</label>
+            <select class="form-control" id="estadoCivil" name="estadoCivil"
+                    th:field="*{estadoCivil.id}">
+                <option value="0">Seleccione...</option>
+                <option th:each="cil:${listEstCil}" th:text="${cil.nombre}" th:value="${cil.id}"/>
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-success">Guardar</button>
+    </form>
+</div>
+</body>
+</html>
